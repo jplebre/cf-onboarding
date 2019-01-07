@@ -153,7 +153,7 @@ OpsManager is running and you can log in.
 - #pas-releng Slack
 
 ### Resources
-- https://docs.pivotal.io/pivotalcf/2-2/customizing/
+- https://docs.pivotal.io/pivotalcf/2-4/customizing/gcp.html
 
 L: opsman
 
@@ -161,7 +161,7 @@ L: opsman
 
 Deploy BOSH Director using Ops Manager
 
-Configure the BOSH GCP tile using this [guide](https://docs.pivotal.io/pivotalcf/2-2/customizing/gcp-om-config.html). Some tips to keep you from getting stuck:
+Configure the BOSH GCP tile using this [guide](https://docs.pivotal.io/pivotalcf/2-4/om/gcp/config-manual.html). Some tips to keep you from getting stuck:
 1. When you get to "Create Availability Zones", you'll want to use the same AZs that you specified in your terraform.
 2. Make sure to read in the instructions carefully when you configure the networks. Especially be careful when setting the network names: they have the form `<network-name>/<subnet-name>/<region>`
 
@@ -174,7 +174,7 @@ After the deploy succeeds, click around and see if you can information about the
 OpsMan successfully deploys a BOSH Director.
 
 ### Resources
-- https://docs.pivotal.io/pivotalcf/2-2/customizing/ops-man.html
+- https://docs.pivotal.io/pivotalcf/2-4/om/gcp/config-manual.html
 
 L: opsman
 
