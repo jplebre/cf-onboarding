@@ -9,6 +9,8 @@ A Tile is a zip file with a `.pivotal` extension containing:
 - a metadata file used to generate a BOSH manifest and Ops Manager form elements for that product
 - migrations files to automatically handle property changes when upgrading to a newer Tile
 
+Tiles can be downloaded from the [PivNet](https://network.pivotal.io/) website.
+
 The Ops Manager Dashboard looks like the following:
 
 ![Ops Manager Dashboard](https://docs.pivotal.io/pivotalcf/2-3/customizing/images/interface.png)
@@ -59,20 +61,14 @@ Differences between PCF and cf-deployment
 ### CF vs PCF
 
 In the stories earlier in onboarding week, you used `bbl up` to create some GCP infrastructure and BOSH + cf-deployment to deploy a Cloud Foundry.
-Tools covered those stories are all open-source
-
-CF Foundation
-
-Ecosystem
-
-Customers of each
+Here's a quick rundown of the similarities and differences between Ops Manager + PAS Tile and cf-deployment.
 
 ### Technical Similarities and Differences
 
 Similarities:
-- Both use BOSH to deploy software
-- Many products can be deployed with either OSS tooling or Ops Manager
-- The App Developer CLI experience such as `cf push` is the same, although PCF adds web apps like Apps Manage to streamline this experience
+- Both use BOSH under the hood to deploy software
+- Many products can be deployed with either OSS tooling or Ops Manager, e.g. Cloud Foundry or MySQL
+- The App Developer CLI experience such as `cf push` is the same, although PCF adds web apps like Apps Manager to streamline this experience
 - We would encourage both PCF and OSS users to configure their environments with a Concourse pipeline
 
 Differences:
@@ -86,7 +82,7 @@ Differences:
   - LTS means that Pivotal will backport security fixes to previously released versions of PCF products, while new features are only added to the latest release
   - cf-deployment users will need to upgrade to the latest release in order to get these security fixes
 - Ops Manager provides a consistent experience to install many different products
-  - While lots of work has gone into making deploying CF with cf-deployment a nice experience, the quality of documentation on other BOSH releases is highly variable
+  - While lots of work has gone into making deploying Cloud Foundry with cf-deployment a nice experience, the quality of documentation on other BOSH releases is highly variable
 - Ops Manager attempts to abstract away the BOSH implementation details, although you will still interact with BOSH when debugging
   - This added layer of abstraction can make debugging more difficult
 - Clicking Apply Changes in Ops Manager is typically slower than running `bosh deploy`
@@ -96,6 +92,21 @@ Differences:
 - Ops Manager does not allow you to change the deployment topology (which jobs are located on which VMs)
   - In cf-deployment you can add an ops-file to co-locate a new job on an existing VM, Ops Manager requires the Tile author to make changes to their Tile to allow this
   - Some Tiles like PAS provide both a full HA version and a "Small Footprint" version to co-locate jobs on a smaller number of VMs
+
+### Ecosystem Similarities and Differences
+
+Similarities:
+- Most (if not all) features of core CF components like Diego, UAA, and CAPI are available in both PAS and cf-deployment
+- Some Pivotal customers use a mix of cf-deployment and Ops Manager across their organization
+- Pivotal engineers often contribute to both cf-deployment and Ops Manager Tiles
+  - e.g. a Diego engineer might submit a PR to add an ops-file to cf-deployment to toggle on a new feature, then submit a PR to the PAS Tile to add a checkbox to toggle that same feature
+
+Differences:
+- cf-deployment and associated tooling (e.g. bbl) are open-source while Ops Manager and most Tiles are closed-source
+- The Cloud Foundry Foundation owns cf-deployment (along with all other projects in the `cloudfoundry` GitHub org) while Pivotal owns Ops Manager and many Tiles
+- Some Cloud Foundry teams have engineers who are employed by other companies within the CF Foundation like IBM and SAP. These engineers will contribute to open-source components, but generally will not contribute to Pivotal-owned software
+- Users download open-source BOSH releases and stemcells from [bosh.io](https://bosh.io) while Pivotal commercial customers will download tiles and stemcells from [PivNet](https://network.pivotal.io/)
+  - PivNet also contains Partner Services which are Tiles jointly developed by Pivotal and partner companies like Datadog and New Relic
 
 L: opsman
 
